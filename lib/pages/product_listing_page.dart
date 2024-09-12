@@ -1,17 +1,19 @@
 import 'package:flutter/flutter.dart';
-import 'services/product_service.dart';
+import 'package:provider/provider.dart';
 
-export class ProductListingPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var productService = Provider.of<ProductService>(context);
-    return Scaffold((
-      appBar: AppBar(title: "Products Listing"),
+class ProductListingPage extends StatelessWidget {
+  @override Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: "Product Listing"),
       body: Center(
-        child: ListView(
-          children: [Text("Product to be listed here.")],
+        child: Column(
+          children: [
+            Text("product 1"),
+            Text("product 2"),
+            Text("product 3"),
+          ]
         )
-      ),
+      )
     );
   }
 }
