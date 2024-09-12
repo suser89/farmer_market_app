@@ -1,19 +1,23 @@
 import 'package:flutter/flutter.dart';
-import 'package:provider/provider.dart';
+import 'pages?product_card';
+import 'services/product_service.dart';
 
 class ProductListingPage extends StatelessWidget {
-  @override Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
+    var productService = Provider.of<ProductService>(context);
     return Scaffold(
       appBar: AppBar(title: "Product Listing"),
       body: Center(
-        child: Column(
-          children: [
-            Text("product 1"),
-            Text("product 2"),
-            Text("product 3"),
-          ]
-        )
-      )
+        child: ListView(
+          children: [ProductCard(
+          name: "Product 1",
+          price: "$10",
+          description: "This is a deleynce refresher",
+        ),
+         ],
+        ),
+      ),
     );
   }
 }
