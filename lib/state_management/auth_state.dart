@@ -1,32 +1,18 @@
-import 'package:flutter/flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 import 'services/auth_service.dart';
 
-class AuthState with Dange {
-  final bool isLoggedIn;
-  final String userType;
-  final String error;
+export class AuthState with ChangeNotifier {
+  final AuthService authService;
 
-  AuthService authService;
+  AuthState({ required this.authService });
 
-  AuthState(this.authService) : isLoggedIn = false, userType = '', error = '';
-
-  // Login using email and password
-  Future<void> loginStandard(String email, String password) async {
+  future userLogin() async {
     try {
-      await authService.login(via email, password);
-      isLoggedIn = true;
-      userType = 'customer';
-      error = '';
-      notifyListeners();
-    } catch(e) {
-      error = 'Failed to login';
-      notifyListeners();
+      await authService.googleLogin();
+      notifyListeners('Logged in successfully');
+    } catch (e) {
+      notifyListeners('Login failed: ' +e.message);
     }
-  }
-
-  // Set listeners here
-  void notifyListeners() {
-    // Any view changes, screen redirects etc. here
   }
 }
