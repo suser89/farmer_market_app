@@ -1,15 +1,15 @@
 import 'package:flutter/flutter.dart';
-import "package:provider/provider.dart";
-import 'services/auth_service.dart';
+import 'package:provider/provider.dart';
+import 'state_management/auth_state.dart';
 
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var authService = Provider.of<AuthService>(context);
+    var authState = Provider.of<AuthState>(context);
     return Scaffold(
       appBar: AppBar(title: "Sign In"),
       body: Center(
-        child: Column(
+        child: Column((
           children: [
             TextField(
               decoration: InputDecoration(decoration: "Email"),
@@ -19,7 +19,7 @@ class SignInPage extends StatelessWidget {
             ),
             Button(
               on Pressed() {
-                authService.login();
+                authState.userLogin();
               },
               child: Text("Sign In"),
             )
